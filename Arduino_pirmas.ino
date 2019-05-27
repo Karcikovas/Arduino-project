@@ -22,21 +22,24 @@ void loop(){
   duration= pulseIn(echoPin, HIGH);
   
   distance = ((340 * duration)/20000);
-
+  
+  Serial.println(duration);
   
   if (distance <= 5){
       digitalWrite(RedLed, HIGH);
       digitalWrite(YellowLed, LOW);
       digitalWrite(GreenLed, LOW);
   } 
-  else if (distance > 5
-      digitalWrite(RedLed, HIGH);
-      digitalWrite(YellowLed, LOW);
+  else if (distance > 5 && distance <10){
+      digitalWrite(RedLed, LOW);
+      digitalWrite(YellowLed, HIGH);
       digitalWrite(GreenLed, LOW);
-  }else
-      digitalWrite(RedLed, HIGH);
+  }
+  else {
+      digitalWrite(RedLed, LOW);
       digitalWrite(YellowLed, LOW);
-      digitalWrite(GreenLed, LOW);
+      digitalWrite(GreenLed, HIGH);
+  }
 }
 
 
