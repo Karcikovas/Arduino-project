@@ -15,6 +15,7 @@ void setup() {
   Serial.begin(9600);
 }
 void loop(){
+  
   long duration, distance;
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -22,36 +23,29 @@ void loop(){
   delayMicroseconds(2);
   digitalWrite(trigPin, LOW);
   duration= pulseIn(echoPin, HIGH);
+
+  int distance;
   
   distance = ((340 * duration)/20000);
   
   Serial.println(duration);
-  
-  if (distance <= 5){
+
+  switch(distance){
+   case (distance <= 5):
       digitalWrite(RedLed, HIGH);
-      digitalWrite(YellowLed, LOW);
-      digitalWrite(GreenLed, LOW);
-      digitalWrite(BlueLed, LOW);
-  } 
-  else if (distance > 5 && distance <10){
-      digitalWrite(RedLed, LOW);
+      break;
+   case (distance > 5 && distance <10):
       digitalWrite(YellowLed, HIGH);
-      digitalWrite(GreenLed, LOW);
-      digitalWrite(BlueLed, LOW);
-  }
-  else if (distance > 10 && distance <20) {
-      digitalWrite(RedLed, LOW);
-      digitalWrite(YellowLed, LOW);
+      break;
+   case (distance > 10 && disntace <20):
       digitalWrite(GreenLed, HIGH);
-      digitalWrite(BlueLed, LOW);      
-  }else if ( distance > 20 ){
-      digitalWrite(RedLed, LOW);
-      digitalWrite(YellowLed, LOW);
-      digitalWrite(GreenLed, LOW);
-      digitalWrite(BlueLed, HIGH); 
-  } else {
+      break;
+   case (distance >20):
+      digitalWrite(BlueLed, HIGH);
+      break;
+   default:
       Serial.println("ITS WRONG");
+    break;
   }
-}
 
 
